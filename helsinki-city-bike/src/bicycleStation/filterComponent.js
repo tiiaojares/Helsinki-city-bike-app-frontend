@@ -1,6 +1,7 @@
 
 
-const FindStation = ({ filterInput, setFilterInput }) => {
+const FilterComponent = ({ filterInput, setFilterInput }) => {
+    
     const filterWith = (event) => {
         setFilterInput(event.target.value);
     }
@@ -18,4 +19,4 @@ const FindStation = ({ filterInput, setFilterInput }) => {
     )
 }
 
-export { FindStation }
+export { FilterComponent }

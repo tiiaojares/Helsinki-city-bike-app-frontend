@@ -1,0 +1,27 @@
+.card {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    width: 18rem;
+    margin: 1rem;
+}
+.cardHeader {
+    min-height: 20rem;
+    position: relative;
+}
+.card-img-top {
+    position: absolute;
+    padding-top: 0.5rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cardText {
+    font-size: 1rem;
+}
+.card:hover {
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
