@@ -14,7 +14,6 @@ const Navigation = () => {
     )
 }
 
-
 const Main = () => {
     return (
         <main>

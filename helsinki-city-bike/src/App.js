@@ -1,8 +1,6 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import './App.css';
 import  { Logo }  from './images/logo';
-import stationService from './services/stations';
 import { Main } from './main/content';
 import {HashRouter as Router} from 'react-router-dom';
 
@@ -11,7 +9,6 @@ const App = () => {
 
   return (
     <Router>
-      <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container">
             <a> 
@@ -23,7 +20,6 @@ const App = () => {
         <div className="container">
           < Main />
         </div>
-      </div>
     </Router>
   );
 }

@@ -31,7 +31,6 @@ const StationsTable = ({stations}) => {
                 <td> {s.ID} </td> 
                 <td> {s.Nimi} </td> 
                 <td> {s.Osoite} </td> 
-                <td> {s.Kaupunki} </td> 
                 <td> {s.Kapasiteet} </td>
             </tr>
             )
@@ -55,8 +54,7 @@ const Stations = () => {
 
     return (
         <div> 
-            <h2> Find station: </h2>
-
+            <FilterComponent />
             {stations ?
                 <div className="table-responsive">
                     <table className="table">
@@ -65,7 +63,7 @@ const Stations = () => {
                             <th scope="col"> ID </th> 
                             <th scope="col"> Nimi </th> 
                             <th scope="col">  Osoite </th> 
-                            <th scope="col"> Kaupunkin </th> 
+
                             <th scope="col"> Kapasiteetti </th> 
                         </tr>
                         </thead>
