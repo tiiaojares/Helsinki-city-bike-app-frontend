@@ -8,17 +8,6 @@ import {HashRouter as Router} from 'react-router-dom';
 
 
 const App = () => {
-  const [stations, setStations] = useState([]);
-
-  //get stations from the backend
-  useEffect(() => {
-    stationService
-      .getAll()
-      .then(response => {
-        setStations(response);
-      })
-  }, []);
-
 
   return (
     <Router>
