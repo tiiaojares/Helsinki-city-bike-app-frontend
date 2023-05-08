@@ -4,44 +4,49 @@ import './station.css'
 import { FilterComponent } from './filterComponent';
 
 
-const StationsTable = ({stations}) => {
+const StationsTable = ({stations, 
+    idFilterInput,
+    nameFilterInput,
+    addressFilterInput,
+    kapasiteetFilterInput,
+    setStationsFoundNumber}) => {
+    
     const maxStationsToShow = 15;
+    console.log("stations lenght:", stations.length)
 
-    if (stations.length === 0 ) {
-        console.log("stations lenght: 0")
-        return null;
+    const foundStations = stations
+        .filter(s => s.ID.toString().startsWith(idFilterInput))
+        .filter(s => s.Nimi.toLowerCase().startsWith(nameFilterInput.toLowerCase()))
+        .filter(s => s.Osoite.toLowerCase().startsWith(addressFilterInput.toLowerCase()))
+        .filter(s => s.Kapasiteet.toString().startsWith(kapasiteetFilterInput))
+    
+    useEffect(() => {
+        setStationsFoundNumber(foundStations.length);
+    }, [foundStations.length, setStationsFoundNumber])
+    
 
-    } else if (stations.length < 50 ) {
-        console.log("stations lenght: <50")
-        return (
-            stations.map(s => 
-                <div key={s.ID}>
-                    <p> { s.Nimi } </p>
-                </div>
-            )
+    const stationsToShow = foundStations.slice(0, maxStationsToShow);
+    console.log("found stations: ", foundStations.length)
+
+    return (
+        stationsToShow.map(s =>
+        <tr key={s.ID}>
+            <td> {s.ID} </td> 
+            <td> {s.Nimi} </td> 
+            <td> {s.Osoite} </td> 
+            <td> {s.Kapasiteet} </td>
+        </tr>
         )
-
-    } else {
-        console.log("stations lenght:", stations.length)
-        const stationsToShow = stations.slice(0, maxStationsToShow);
-
-        return (
-            stationsToShow.map(s =>
-            <tr key={s.ID}>
-                <td> {s.ID} </td> 
-                <td> {s.Nimi} </td> 
-                <td> {s.Osoite} </td> 
-                <td> {s.Kapasiteet} </td>
-            </tr>
-            )
-        )
-    }
+    )
 }
-
-
 
 const Stations = () => {
     const [stations, setStations] = useState([]);
+    const [idFilterInput, setIdFilterInput] = useState("");
+    const [nameFilterInput, setNameFilterInput] = useState("");
+    const [addressFilterInput, setAddressFilterInput] = useState("");
+    const [kapasiteetFilterInput, setKapasiteetFilterInput] = useState("");
+    const [stationsFindNumber, setStationsFoundNumber] = useState("");
 
     //get stations from the backend
     useEffect(() => {
@@ -54,8 +59,26 @@ const Stations = () => {
 
     return (
         <div> 
-            <FilterComponent />
-            {stations ?
+            <FilterComponent 
+                idFilterInput={idFilterInput}
+                setIdFilterInput={setIdFilterInput}
+                nameFilterInput={nameFilterInput}
+                setNameFilterInput={setNameFilterInput}
+                addressFilterInput={addressFilterInput}
+                setAddressFilterInput={setAddressFilterInput}
+                kapasiteetFilterInput={kapasiteetFilterInput}
+                setKapasiteetFilterInput={setKapasiteetFilterInput}
+                stationsFindNumber={stationsFindNumber}
+
+            />
+            <span className="infoForMobileUser"> Hakutuloksilla löytyy {stationsFindNumber} asemaa </span>
+            {stationsFindNumber > 15 &&
+            <div className="listInfoText">
+                Asemat 1-15 / {stationsFindNumber}
+            </div>
+            }
+            
+            {stations &&
                 <div className="table-responsive">
                     <table className="table">
                         <thead>
@@ -68,12 +91,17 @@ const Stations = () => {
                         </tr>
                         </thead>
                         <tbody>
-                            <StationsTable stations={stations}/>
+                            <StationsTable 
+                                stations={stations}
+                                idFilterInput={idFilterInput}
+                                nameFilterInput={nameFilterInput}
+                                addressFilterInput={addressFilterInput}
+                                kapasiteetFilterInput={kapasiteetFilterInput}
+                                setStationsFoundNumber={setStationsFoundNumber}
+                                />
                         </tbody>
                     </table>
                 </div>
-                :
-                <div> No data </div>
             }
             
         </div>

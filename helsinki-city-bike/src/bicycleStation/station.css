@@ -1,5 +1,5 @@
 .filterComponent {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border-bottom: solid 3px;
     border-color: black;
 }
@@ -30,6 +30,9 @@ input {
 .text {
     float:right;
 }
+.listInfoText {
+    margin-bottom: 1rem;
+}
 
 @media screen and (max-width: 600px) {
     h2 {
@@ -44,7 +47,21 @@ input {
         font-size: 0.8rem;
         padding: 0.rem;
     }
-
+    .lastRow{
+        padding-bottom: 1rem;
+    }
+    .filterInfo {
+        display: none;
+    }
+    table{
+        font-size: 0.6rem;
+    }
+    .listInfoText {
+        font-size: 0.6rem;
+    }
+    .infoForMobileUser {
+        font-size: 0.7rem;
+    }
 }
 
 @media screen and (min-width: 600px) {
@@ -52,6 +69,8 @@ input {
         width: 40%;
         margin-right: 30%;
     }
-
+    .infoForMobileUser {
+        display: none;
+    }
 
 }
