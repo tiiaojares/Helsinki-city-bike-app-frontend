@@ -40,7 +40,7 @@ const StationsTable = ({stations,
     )
 }
 
-const Stations = () => {
+const StationsView = () => {
     const [stations, setStations] = useState([]);
     const [idFilterInput, setIdFilterInput] = useState("");
     const [nameFilterInput, setNameFilterInput] = useState("");
@@ -109,4 +109,4 @@ const Stations = () => {
 
 }
 
-export { Stations }
+export { StationsView }

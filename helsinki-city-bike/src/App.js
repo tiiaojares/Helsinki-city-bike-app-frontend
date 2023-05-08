@@ -2,25 +2,27 @@ import React from 'react';
 import './App.css';
 import  { Logo }  from './images/logo';
 import { Main } from './main/content';
-import {HashRouter as Router} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const App = () => {
 
+  const navigate = useNavigate();
+
   return (
-    <Router>
+      <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container">
-            <a> 
+            <a onClick={() => navigate("/")}> 
               < Logo />
-              Helsinki city bike -application
+              Helsinki city bike
             </a>
           </div>
         </nav>
         <div className="container">
           < Main />
         </div>
-    </Router>
+      </div>
   );
 }
 

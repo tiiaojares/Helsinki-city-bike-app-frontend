@@ -1,8 +1,8 @@
 
 import { Link, Routes, Route } from 'react-router-dom';
 import { MainPage } from './MainPage';
-import { Stations } from '../bicycleStation/stations';
-import { Journeys } from '../journeys/journeys';
+import { StationsView } from '../bicycleStation/stationsView';
+import { JourneysView } from '../journeys/journeysView';
 
 const Navigation = () => {
     return (
@@ -19,8 +19,8 @@ const Main = () => {
         <main>
             <Routes>
                 <Route path="/" element={ < MainPage /> } />
-                <Route path="/stations" element={ < Stations /> } />
-                <Route path="/journeys" element={ < Journeys /> } />
+                <Route path="/stations" element={ < StationsView /> } />
+                <Route path="/journeys" element={ < JourneysView /> } />
             </Routes>
         </main>
     )

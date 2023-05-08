@@ -1,6 +1,6 @@
 
 
-const Journeys = () => {
+const JourneysView = () => {
     return (
         <div>
             list of journeys
@@ -8,4 +8,4 @@ const Journeys = () => {
     )
 }
 
-export { Journeys }
+export { JourneysView }
