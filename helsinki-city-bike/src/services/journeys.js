@@ -12,4 +12,9 @@ const getJourneysDepartureId = (id) => {
     return request.then(response => response.data)
 }
 
-export default { getAll, getJourneysDepartureId }
+const getJourneysReturnId = (id) => {
+    const request = axios.get('/api/journeys/return/'+id);
+    return request.then(response => response.data)
+}
+
+export default { getAll, getJourneysDepartureId, getJourneysReturnId }

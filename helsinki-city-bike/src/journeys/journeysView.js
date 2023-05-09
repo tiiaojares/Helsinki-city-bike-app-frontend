@@ -14,22 +14,11 @@ const JourneyTable = ({journeys}) => {
        <tr key={j._id}>
             <td> {j.departure_name} </td> 
             <td> {j.return_name} </td> 
-            <td> {j.distance / 100} </td> 
+            <td> {j.distance / 1000} </td> 
             <td> {(j.duration / 60).toFixed(1)} </td>
         </tr>)
   )
 }
-
-
-
-
-
-
-
-
-
-
-
 
 const JourneysView = () => {
     const [journeys, setJourneys] = useState([]);
