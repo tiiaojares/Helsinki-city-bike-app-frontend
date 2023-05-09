@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import stationService from '../services/stations';
 import './station.css'
 import { FilterComponent } from './filterComponent';
+import { useNavigate } from 'react-router-dom';
 
 
 const StationsTable = ({stations, 
@@ -28,9 +29,18 @@ const StationsTable = ({stations,
     const stationsToShow = foundStations.slice(0, maxStationsToShow);
     console.log("found stations: ", foundStations.length)
 
+
+    const navigate = useNavigate();
+
+    const selectStation = (station) => {
+        const id = station.ID
+        navigate("/stations/"+id)
+
+    }
+
     return (
         stationsToShow.map(s =>
-        <tr key={s.ID}>
+        <tr key={s.ID} onClick={() => selectStation(s)}>
             <td> {s.ID} </td> 
             <td> {s.Nimi} </td> 
             <td> {s.Osoite} </td> 
@@ -42,6 +52,7 @@ const StationsTable = ({stations,
 
 const StationsView = () => {
     const [stations, setStations] = useState([]);
+    const [selectedStation, setSelectedStation] = useState(null);
     const [idFilterInput, setIdFilterInput] = useState("");
     const [nameFilterInput, setNameFilterInput] = useState("");
     const [addressFilterInput, setAddressFilterInput] = useState("");
@@ -86,13 +97,13 @@ const StationsView = () => {
                             <th scope="col"> ID </th> 
                             <th scope="col"> Nimi </th> 
                             <th scope="col">  Osoite </th> 
-
                             <th scope="col"> Kapasiteetti </th> 
                         </tr>
                         </thead>
                         <tbody>
                             <StationsTable 
                                 stations={stations}
+                                setSelectedStation={setSelectedStation}
                                 idFilterInput={idFilterInput}
                                 nameFilterInput={nameFilterInput}
                                 addressFilterInput={addressFilterInput}
