@@ -66,6 +66,8 @@ const StationsView = () => {
         })
     }, []);
 
+    const navigate = useNavigate();
+
     return (
         <div> 
             <FilterComponent 
@@ -88,7 +90,7 @@ const StationsView = () => {
             }
             
             {stations &&
-                <div className="table-responsive">
+                <div className="table-responsive tableView">
                     <table className="table">
                         <thead>
                         <tr>
@@ -111,7 +113,15 @@ const StationsView = () => {
                     </table>
                 </div>
             }
-            
+            <nav class="navbar fixed-bottom navbar-dark bg-dark">
+            <div className="container"> 
+              <a 
+                className="navbar-brand bottom"
+                onClick={() => navigate(-1)}>
+                Takaisin
+              </a>
+            </div>
+          </nav>
         </div>
     )
 

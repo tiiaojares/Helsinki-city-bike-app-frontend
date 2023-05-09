@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import journeysService from '../services/journeys';
+import { useNavigate } from 'react-router-dom';
 
 
 const JourneyTable = ({journeys}) => {
@@ -32,28 +33,38 @@ const JourneysView = () => {
           })
       }, []);
     
+    const navigate = useNavigate();
     
     return (
         <div>
             {journeys &&
-              <div className="table-responsive">
+              <div className="table-responsive tableView">
                 <table className="table">
-                        <thead>
-                        <tr>
-                            <th scope="col"> Departure station </th> 
-                            <th scope="col"> Return station </th> 
-                            <th scope="col"> Distance (km) </th> 
-                            <th scope="col"> Duration (min) </th> 
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <JourneyTable 
-                                journeys={journeys}
-                            />
-                        </tbody>
-                    </table>
-                </div>
+                  <thead>
+                  <tr>
+                      <th scope="col"> Departure station </th> 
+                      <th scope="col"> Return station </th> 
+                      <th scope="col"> Distance (km) </th> 
+                      <th scope="col"> Duration (min) </th> 
+                  </tr>
+                  </thead>
+                  <tbody>
+                      <JourneyTable 
+                          journeys={journeys}
+                      />
+                  </tbody>
+                </table>
+              </div>
             }
+          <nav class="navbar fixed-bottom navbar-dark bg-dark">
+            <div className="container"> 
+              <a 
+                className="navbar-brand bottom"
+                onClick={() => navigate(-1)}>
+                Takaisin
+              </a>
+            </div>
+          </nav>
         </div>
     )
 }
