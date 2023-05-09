@@ -1,7 +1,7 @@
 
 import { Link, Routes, Route } from 'react-router-dom';
 import { MainPage } from './MainPage';
-import { StationsView } from '../bicycleStation/stationsView';
+import { StationsView } from '../station/stationsView';
 import { JourneysView } from '../journeys/journeysView';
 
 const Navigation = () => {
