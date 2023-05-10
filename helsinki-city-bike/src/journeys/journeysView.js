@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import journeysService from '../services/journeys';
 import { useNavigate } from 'react-router-dom';
+import './journeys.css'
 
-
-const JourneyTable = ({journeys}) => {
+const JourneyTable = ({ journeys }) => {
 
   const maxJourneysToShow = 15;
 
@@ -34,26 +34,35 @@ const JourneysView = () => {
       }, []);
     
     const navigate = useNavigate();
+
+
     
     return (
         <div>
+          <h2> Toteutuneet matkat: </h2>
+          <div className="picture">
+            <img className="journeysViewPicture" src="https://cdn.pixabay.com/photo/2014/12/02/03/16/winding-road-553481__340.jpg" />
+          </div>
             {journeys &&
               <div className="table-responsive tableView">
                 <table className="table">
                   <thead>
                   <tr>
-                      <th scope="col"> Departure station </th> 
-                      <th scope="col"> Return station </th> 
-                      <th scope="col"> Distance (km) </th> 
-                      <th scope="col"> Duration (min) </th> 
+                      <th scope="col"> Lähtöasema </th> 
+                      <th scope="col"> Paluuasema </th> 
+                      <th scope="col"> Pituus (km) </th> 
+                      <th scope="col"> Kesto (min) </th> 
                   </tr>
                   </thead>
                   <tbody>
-                      <JourneyTable 
-                          journeys={journeys}
-                      />
+                      <JourneyTable journeys={journeys} />
                   </tbody>
                 </table>
+                <button 
+                  className="btn btn-dark btn-sm"
+                  onClick={() => navigate("/journeys/find")}> 
+                  Tarkennettu haku 
+                </button>
               </div>
             }
           <nav class="navbar fixed-bottom navbar-dark bg-dark">

@@ -13,6 +13,7 @@ const StationDetail = () => {
     const params = useParams();
     const id = params.id;
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const request1 = axios.get('/api/stations/'+id)
@@ -156,6 +157,15 @@ const StationDetail = () => {
                 </table>
                 </div>
             </div>
+            <nav class="navbar fixed-bottom navbar-dark bg-dark">
+            <div className="container"> 
+              <a 
+                className="navbar-brand bottom"
+                onClick={() => navigate(-1)}>
+                Takaisin
+              </a>
+            </div>
+          </nav>
         </div>
     )
 }

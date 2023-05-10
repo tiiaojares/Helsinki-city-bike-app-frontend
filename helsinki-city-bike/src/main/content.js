@@ -1,9 +1,10 @@
 
-import { Link, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { StationsView } from '../station/stationsView';
 import { JourneysView } from '../journeys/journeysView';
 import { StationDetail } from '../station/stationDetail';
 import { CardComponent } from '../cards/card';
+import { FindJourneys } from '../journeys/findJourneys';
 import '../App.css'
 
 
@@ -31,6 +32,7 @@ const Main = () => {
                 <Route path="/stations" element={ < StationsView /> } />
                 <Route path="/journeys" element={ < JourneysView /> } />
                 <Route path="/stations/:id" element={ <StationDetail /> } />
+                <Route path ="/journeys/find" element={<FindJourneys />}/>
             </Routes>
         </main>
     )

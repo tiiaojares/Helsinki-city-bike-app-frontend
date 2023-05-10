@@ -5,7 +5,8 @@ import { FilterComponent } from './filterComponent';
 import { useNavigate } from 'react-router-dom';
 
 
-const StationsTable = ({stations, 
+const StationsTable = ({
+    stations, 
     idFilterInput,
     nameFilterInput,
     addressFilterInput,
@@ -39,7 +40,9 @@ const StationsTable = ({stations,
 
     return (
         stationsToShow.map(s =>
-        <tr key={s.ID} onClick={() => selectStation(s)}>
+        <tr key={s.ID} 
+            onClick={() => selectStation(s)}
+            className="stationRow">
             <td> {s.ID} </td> 
             <td> {s.Nimi} </td> 
             <td> {s.Osoite} </td> 

@@ -22,8 +22,7 @@ const App = () => {
         <div className="container">
           < Main />
         </div>
-        <nav className="navbar mainPageBottom fixed-bottom navbar-dark bg-dark" 
-         />
+        <nav className="navbar mainPageBottom fixed-bottom navbar-dark bg-dark" />
 
 
       </div>
