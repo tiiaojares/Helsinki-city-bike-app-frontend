@@ -52,6 +52,22 @@ const StationsTable = ({
     )
 }
 
+const ArrowNext = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
+        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+        </svg>
+    )
+}
+
+const ArrowPrevious = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
+        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+    )
+}
+
 const StationsView = () => {
     const [stations, setStations] = useState([]);
     const [idFilterInput, setIdFilterInput] = useState("");
@@ -59,6 +75,8 @@ const StationsView = () => {
     const [addressFilterInput, setAddressFilterInput] = useState("");
     const [kapasiteetFilterInput, setKapasiteetFilterInput] = useState("");
     const [stationsFindNumber, setStationsFoundNumber] = useState("");
+    const [maxIndexToShow, setMaxIndexToShow] = useState(15);
+    const [minIndexToShow, setMinIndexToShow] = useState(1);
 
     //get stations from the backend
     useEffect(() => {
@@ -70,6 +88,31 @@ const StationsView = () => {
     }, []);
 
     const navigate = useNavigate();
+
+    function next() {
+        if (maxIndexToShow + 15 > stations.length){
+            setMinIndexToShow(minIndexToShow + 15)
+            setMaxIndexToShow(stations.length);
+        } else {
+            setMinIndexToShow(minIndexToShow + 15)
+            setMaxIndexToShow(maxIndexToShow + 15)
+        }
+    }
+
+    function previous() {
+        if (maxIndexToShow - minIndexToShow < 15){
+            setMaxIndexToShow(minIndexToShow - 1);
+            setMinIndexToShow(minIndexToShow-15)
+        } else if(minIndexToShow - 15 <= 0) {
+            setMinIndexToShow(1);
+            setMaxIndexToShow(15);    
+        } else {
+            setMinIndexToShow(minIndexToShow - 15);
+            setMaxIndexToShow(maxIndexToShow - 15);  
+        }
+    }
+   
+    
 
     return (
         <div> 
@@ -85,10 +128,13 @@ const StationsView = () => {
                 stationsFindNumber={stationsFindNumber}
 
             />
-            <span className="infoForMobileUser"> Hakutuloksilla löytyy {stationsFindNumber} asemaa </span>
+            
             {stationsFindNumber > 15 &&
-            <div className="listInfoText">
-                Asemat 1-15 / {stationsFindNumber}
+            <div aria-label="Page navigation example">
+                
+                 { maxIndexToShow > 15 && <span className="arrow" onClick={() => previous()}> <ArrowPrevious /> </span> }
+                <span className="stationPagination">Asemat {minIndexToShow}-{maxIndexToShow} / {stationsFindNumber}</span>
+                { maxIndexToShow < stations.length && <span className="arrow" onClick={() => next()}> <ArrowNext /> </span> }
             </div>
             }
             

@@ -69,7 +69,7 @@ const JourneysView = () => {
             <div className="container"> 
               <a 
                 className="navbar-brand bottom"
-                onClick={() => navigate(-1)}>
+                onClick={() => navigate("/")}>
                 Takaisin
               </a>
             </div>

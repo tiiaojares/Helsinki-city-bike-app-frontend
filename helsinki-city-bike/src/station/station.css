@@ -32,7 +32,10 @@ input {
 }
 .listInfoText {
     margin-bottom: 1rem;
+    align-items: center;
+
 }
+
 .stationRow {
     cursor: pointer;
 }
@@ -45,6 +48,14 @@ input {
 .journeyPicture {
     margin-top: 0;
 }
+
+.arrow:hover {
+    cursor: pointer;
+}
+.bi {
+    margin-right: 0;
+}
+
 @media screen and (max-width: 600px) {
     h2 {
         font-size: 1rem;
@@ -70,9 +81,18 @@ input {
     .listInfoText {
         font-size: 0.6rem;
     }
-    .infoForMobileUser {
-        font-size: 0.7rem;
+    .arrow {
+        margin-right: 0;
+        padding: 0;
+        
     }
+    .bi {
+        width: 20px;
+    }
+  
+
+
+
 }
 
 @media screen and (min-width: 600px) {

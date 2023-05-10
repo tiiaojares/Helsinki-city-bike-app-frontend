@@ -10,16 +10,25 @@ const FindJourneys = () => {
 
     const navigate = useNavigate();
 
+    const refresh = () => {
+        setSelectedDepartureStation("");
+        setSelectedReturnStation("");
+    }
+
+    const findData = () => {
+
+    }
+
     return (
     <div>
-        <h2> Etsi matkoja: </h2>
+        <h2> Hae matkoja: </h2>
         <div className="picture">
             <img className="journeysViewPicture" src="https://cdn.pixabay.com/photo/2014/12/02/03/16/winding-road-553481__340.jpg" />
         </div>
 
         <div className="container findJourneyComponent"> 
             <div className="row">
-                    <div className="col-sm-6">
+                    <div className="col-6">
                         
                         {!selectedDepartureStation ?
                         <div>
@@ -36,7 +45,7 @@ const FindJourneys = () => {
                         }
                     </div>
 
-                    <div className="col-sm-6"> 
+                    <div className="col-6"> 
                         {!selectedReturnStation ?
                         <div>
                             <h4> Etsi paluuasema: </h4>   
@@ -51,7 +60,16 @@ const FindJourneys = () => {
                         }
                     </div>
                     {selectedDepartureStation && selectedReturnStation ?
-                    <div> hakutulos</div>
+                    <div> 
+                        <p>hakutulos: </p>
+
+
+                        <button 
+                        className="btn btn-dark btn-sm"
+                        onClick={() => refresh()}> 
+                        Uusi haku
+                        </button>
+                    </div>
                     :
                     <div> ei vielä </div>
                     }
@@ -63,7 +81,7 @@ const FindJourneys = () => {
             <div className="container"> 
                 <a 
                 className="navbar-brand bottom"
-                onClick={() => navigate(-1)}>
+                onClick={() => navigate('/journeys')}>
                 Takaisin
                 </a>
             </div>
