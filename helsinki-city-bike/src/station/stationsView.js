@@ -3,6 +3,7 @@ import stationService from '../services/stations';
 import './station.css'
 import { FilterComponent } from './filterComponent';
 import { useNavigate } from 'react-router-dom';
+import { ArrowNext, ArrowPrevious } from '../images/arrows';
 
 
 const StationsTable = ({
@@ -11,10 +12,11 @@ const StationsTable = ({
     nameFilterInput,
     addressFilterInput,
     kapasiteetFilterInput,
-    setStationsFoundNumber}) => {
+    setStationsFoundNumber,
+    minIndexToShow,
+    maxIndexToShow
+    }) => {
     
-    const maxStationsToShow = 15;
-    console.log("stations lenght:", stations.length)
 
     const foundStations = stations
         .filter(s => s.ID.toString().startsWith(idFilterInput))
@@ -26,9 +28,11 @@ const StationsTable = ({
         setStationsFoundNumber(foundStations.length);
     }, [foundStations.length, setStationsFoundNumber])
     
+    const from = minIndexToShow - 1;
+    const to = maxIndexToShow - 1;
 
-    const stationsToShow = foundStations.slice(0, maxStationsToShow);
-    console.log("found stations: ", foundStations.length)
+    const stationsToShow = foundStations.slice(from, to);
+    console.log("show stations index ", from, "-", to)
 
 
     const navigate = useNavigate();
@@ -52,21 +56,7 @@ const StationsTable = ({
     )
 }
 
-const ArrowNext = () => {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
-        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-        </svg>
-    )
-}
 
-const ArrowPrevious = () => {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
-        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-        </svg>
-    )
-}
 
 const StationsView = () => {
     const [stations, setStations] = useState([]);
@@ -126,7 +116,6 @@ const StationsView = () => {
                 kapasiteetFilterInput={kapasiteetFilterInput}
                 setKapasiteetFilterInput={setKapasiteetFilterInput}
                 stationsFindNumber={stationsFindNumber}
-
             />
             
             {stationsFindNumber > 15 &&
@@ -157,6 +146,8 @@ const StationsView = () => {
                                 addressFilterInput={addressFilterInput}
                                 kapasiteetFilterInput={kapasiteetFilterInput}
                                 setStationsFoundNumber={setStationsFoundNumber}
+                                maxIndexToShow={maxIndexToShow}
+                                minIndexToShow={minIndexToShow}
                                 />
                         </tbody>
                     </table>
