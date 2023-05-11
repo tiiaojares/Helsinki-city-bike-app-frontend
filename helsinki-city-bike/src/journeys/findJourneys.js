@@ -1,12 +1,35 @@
 import { useNavigate } from 'react-router-dom';
 import { SelectStation } from './selectStation'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import journeyService from '../services/journeys';
 import './journeys.css'
+
+const JourneyData = ({selectedDepartureStation, selectedReturnStation}) => {
+    const [foundJourneys, setFoundJourneys] = useState([]);
+
+    useEffect(() => {
+        journeyService
+        .getJourneysDepartureAndReturnStation(selectedDepartureStation.Nimi, selectedReturnStation.Nimi)
+        
+        .then(response => {
+            setFoundJourneys(response)
+            console.log("found journeys: ", response.length)
+        })
+    }, []);
+
+
+    return <div> hakutulos {foundJourneys.length}
+       
+    </div>
+
+}
+
 
 
 const FindJourneys = () => {
-    const [selectedDepartureStation, setSelectedDepartureStation] = useState("")
-    const [selectedReturnStation, setSelectedReturnStation] = useState("")
+    const [selectedDepartureStation, setSelectedDepartureStation] = useState("");
+    const [selectedReturnStation, setSelectedReturnStation] = useState("");
+    
 
     const navigate = useNavigate();
 
@@ -15,9 +38,7 @@ const FindJourneys = () => {
         setSelectedReturnStation("");
     }
 
-    const findData = () => {
-
-    }
+    
 
     return (
     <div>
@@ -60,20 +81,20 @@ const FindJourneys = () => {
                         }
                     </div>
                     {selectedDepartureStation && selectedReturnStation ?
-                    <div> 
-                        <p>hakutulos: </p>
+                        <div>
+                            <JourneyData
+                            selectedDepartureStation={selectedDepartureStation}
+                            selectedReturnStation={selectedReturnStation} 
+                            />
+                            <button 
+                            className="btn btn-dark btn-sm"
+                            onClick={() => refresh()}> 
+                            Uusi haku
+                            </button>
+                        </div> :
+                        <div/>
+                    }   
 
-
-                        <button 
-                        className="btn btn-dark btn-sm"
-                        onClick={() => refresh()}> 
-                        Uusi haku
-                        </button>
-                    </div>
-                    :
-                    <div> ei vielä </div>
-                    }
-            
             </div>   
         </div>
 

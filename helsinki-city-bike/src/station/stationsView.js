@@ -102,7 +102,6 @@ const StationsView = () => {
         }
     }
    
-    
 
     return (
         <div> 

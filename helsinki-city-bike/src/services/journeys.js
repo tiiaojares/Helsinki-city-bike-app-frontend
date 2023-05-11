@@ -9,12 +9,17 @@ const getAll = () => {
 
 const getJourneysDepartureId = (id) => {
     const request = axios.get('/api/journeys/departure/'+id);
-    return request.then(response => response.data)
+    return request.then(response => response.data);
 }
 
 const getJourneysReturnId = (id) => {
     const request = axios.get('/api/journeys/return/'+id);
-    return request.then(response => response.data)
+    return request.then(response => response.data);
 }
 
-export default { getAll, getJourneysDepartureId, getJourneysReturnId }
+const getJourneysDepartureAndReturnStation = (dep, ret) => {
+    const request = axios.get('api/journeys/find/'+dep+'/'+ret);
+    return request.then(response => response.data);
+}
+
+export default { getAll, getJourneysDepartureId, getJourneysReturnId, getJourneysDepartureAndReturnStation }
