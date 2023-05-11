@@ -1,14 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import journeysService from '../services/journeys';
 import axios from 'axios';
 import './station.css'
+
+
 
 const StationDetail = () => {
     const [journeysDepartureId, setJourneysDepartureId] = useState([]);
     const [journeysReturnId, setJourneysReturnId] = useState([]);
-    const [selectedStation, setSelectedStation] = useState();
+    const [selectedStation, setSelectedStation] = useState(null);
 
     const params = useParams();
     const id = params.id;
@@ -17,10 +18,10 @@ const StationDetail = () => {
 
     useEffect(() => {
         const request1 = axios.get('/api/stations/'+id)
-        .then(response1 => {
-            setSelectedStation(response1.data)
-            console.log("selected: ", response1)
-        });
+            .then(response1 => {
+                setSelectedStation(response1.data)
+                console.log("selected: ", response1)
+            });
 
 
         const request2 = axios.get('/api/journeys/departure/'+id)
@@ -55,28 +56,34 @@ const StationDetail = () => {
     };
 
 
-    const longestTrip = (journeys) => {
+    function longestTrip(journeys) {
         if(journeys) {
             const distances = journeys.map(j => j.distance);
-            const maxValue = (Math.max(...distances)/1000).toFixed(1);
+            const maxValue = (Math.max(...distances)/1000).toFixed(1);  
+            console.log(maxValue)
             return maxValue;
         }
     }
-    const shortestTrip = (journeys) => {
+
+    function shortestTrip(journeys) {
         if(journeys) {
             const distances = journeys.map(j => j.distance);
             const minValue = Math.min(...distances);
-            return minValue;
+            console.log("shortestTrip: ", minValue)
+            return minValue
         }
     }
-    const longestTripMin = (journeys) => {
+    
+
+    function longestTripMin(journeys) {
         if(journeys) {
             const durations = journeys.map(j => j.duration);
             const maxValue = (Math.max(...durations)/120).toFixed(0);
             return maxValue;
         }
+        
     }
-    const shortestTripMin = (journeys) => {
+    function shortestTripMin(journeys) {
         if(journeys) {
             const durations = journeys.map(j => j.duration);
             const minValue = (Math.min(...durations)/60).toFixed(1);
@@ -136,7 +143,7 @@ const StationDetail = () => {
                 <table className="table journeyDetail">
                     <tr>
                         <th scope="col"> Asemalle palattujen matkojen määrä: </th>
-                        <td> {journeysDepartureId.length} </td>
+                        <td> {journeysReturnId.length} </td>
                     </tr>
                     <tr>
                         <td > Lyhyin matka (m): </td>
@@ -168,6 +175,7 @@ const StationDetail = () => {
           </nav>
         </div>
     )
+    
 }
 
 export { StationDetail }

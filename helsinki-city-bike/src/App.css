@@ -25,4 +25,7 @@ a:hover {
   .mainPageBottom {
     display: none;
   }
+  .nav-link {
+    text-align: left;
+  }
 }

@@ -14,7 +14,8 @@ const StationsTable = ({
     kapasiteetFilterInput,
     setStationsFoundNumber,
     minIndexToShow,
-    maxIndexToShow
+    maxIndexToShow,
+    sortType
     }) => {
     
 
@@ -31,6 +32,18 @@ const StationsTable = ({
     const from = minIndexToShow - 1;
     const to = maxIndexToShow - 1;
 
+   //sort list
+    if (sortType === "id") {
+        const sortedList = foundStations.sort((a, b) => a.ID - b.ID)
+    } else if (sortType === "name") {
+        const sortedList = foundStations.sort((a, b) => a.Nimi.localeCompare(b.Nimi) )
+    } else if (sortType === "address") {
+        const sortedList = foundStations.sort((a, b) => a.Osoite.localeCompare(b.Osoite))
+    } else if (sortType === "kapasiteet") {
+        const sortedList = foundStations.sort((a, b) => a.Kapasiteet - b.Kapasiteet)
+    }
+
+
     const stationsToShow = foundStations.slice(from, to);
     console.log("show stations index ", from, "-", to)
 
@@ -42,13 +55,15 @@ const StationsTable = ({
         navigate("/stations/"+id)
     }
 
+   
+
     return (
         stationsToShow.map(s =>
         <tr key={s.ID} 
             onClick={() => selectStation(s)}
             className="stationRow">
             <td> {s.ID} </td> 
-            <td> {s.Nimi} </td> 
+            <td> {s.Nimi } </td> 
             <td> {s.Osoite} </td> 
             <td> {s.Kapasiteet} </td>
         </tr>
@@ -67,6 +82,7 @@ const StationsView = () => {
     const [stationsFindNumber, setStationsFoundNumber] = useState("");
     const [maxIndexToShow, setMaxIndexToShow] = useState(15);
     const [minIndexToShow, setMinIndexToShow] = useState(1);
+    const [sortType, setSortType] = useState("id")
 
     //get stations from the backend
     useEffect(() => {
@@ -101,7 +117,6 @@ const StationsView = () => {
             setMaxIndexToShow(maxIndexToShow - 15);  
         }
     }
-   
 
     return (
         <div> 
@@ -131,10 +146,10 @@ const StationsView = () => {
                     <table className="table">
                         <thead>
                         <tr>
-                            <th scope="col"> ID </th> 
-                            <th scope="col"> Nimi </th> 
-                            <th scope="col">  Osoite </th> 
-                            <th scope="col"> Kapasiteetti </th> 
+                            <th onClick={() => setSortType("id")} scope="col"> ID </th> 
+                            <th onClick={() => setSortType("name")} scope="col"> Nimi </th> 
+                            <th onClick={() => setSortType("address")} scope="col">  Osoite </th> 
+                            <th onClick={() => setSortType("kapasiteet")} scope="col"> Kapasiteetti </th> 
                         </tr>
                         </thead>
                         <tbody>
@@ -147,6 +162,8 @@ const StationsView = () => {
                                 setStationsFoundNumber={setStationsFoundNumber}
                                 maxIndexToShow={maxIndexToShow}
                                 minIndexToShow={minIndexToShow}
+                                sortType={sortType}
+                                setSortType={setSortType}
                                 />
                         </tbody>
                     </table>

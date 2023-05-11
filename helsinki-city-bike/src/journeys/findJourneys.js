@@ -17,10 +17,7 @@ const JourneyData = ({selectedDepartureStation, selectedReturnStation}) => {
         })
     }, []);
 
-
-    return <div> hakutulos {foundJourneys.length}
-       
-    </div>
+    return <div> hakutulos {foundJourneys.length} </div>
 
 }
 
