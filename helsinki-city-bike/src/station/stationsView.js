@@ -146,10 +146,10 @@ const StationsView = () => {
                     <table className="table">
                         <thead>
                         <tr>
-                            <th onClick={() => setSortType("id")} scope="col"> ID </th> 
-                            <th onClick={() => setSortType("name")} scope="col"> Nimi </th> 
-                            <th onClick={() => setSortType("address")} scope="col">  Osoite </th> 
-                            <th onClick={() => setSortType("kapasiteet")} scope="col"> Kapasiteetti </th> 
+                            <th className={sortType === "id" ? "selected" : "sort"}  onClick={() => setSortType("id")} scope="col"> ID </th> 
+                            <th className={sortType === "name" ? "selected" : "sort"} onClick={() => setSortType("name")} scope="col"> Nimi </th> 
+                            <th className={sortType === "address" ? "selected" : "sort"} onClick={() => setSortType("address")} scope="col">  Osoite </th> 
+                            <th className={sortType === "kapasiteet" ? "selected" : "sort"} onClick={() => setSortType("kapasiteet")} scope="col"> Kapasiteetti </th> 
                         </tr>
                         </thead>
                         <tbody>
@@ -163,7 +163,6 @@ const StationsView = () => {
                                 maxIndexToShow={maxIndexToShow}
                                 minIndexToShow={minIndexToShow}
                                 sortType={sortType}
-                                setSortType={setSortType}
                                 />
                         </tbody>
                     </table>

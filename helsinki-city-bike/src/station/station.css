@@ -55,6 +55,17 @@ input {
 .bi {
     margin-right: 0;
 }
+.sort {
+    font-weight: var(--bs-body-line-weight);
+    
+}
+.sort:hover {
+    cursor: pointer;
+
+}
+.selected {
+    color: black
+}
 
 @media screen and (max-width: 600px) {
     h2 {
@@ -89,6 +100,7 @@ input {
     .bi {
         width: 20px;
     }
+ 
   
 
 
