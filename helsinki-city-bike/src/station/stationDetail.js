@@ -58,11 +58,11 @@ const StationDetail = () => {
             if(journeys.length > 0) {
             return journeys.length
             }
-    } else if (journeys === null) {
-        return (
-            <div> 0 </div>
-        )
-    }
+        } else if (journeys === null) {
+            return (
+                <div> 0 </div>
+            )
+        }
 
     }
     
@@ -193,12 +193,34 @@ const StationDetail = () => {
 
             const sortedList = Array.from(stationList).sort((a, b) => b[1] - a[1])
             const topFive = sortedList.slice(0, 5).map(journey => <tr><td>{journey[0]}</td> <td>{journey[1]}</td></tr>)
-            console.log(topFive)
 
             return topFive;
         }
     }
     
+
+    function topFiveDepartureStations() {
+        if (journeysReturnId) {
+            const DepartureStationsNames = journeysReturnId.map(j => j.departure_name);
+            const stationList = new Map();
+
+            for (const station of DepartureStationsNames) {
+                if (!stationList.has(station)) {
+                    stationList.set(station, 1);
+                } else {
+                    const count = stationList.get(station);
+                    stationList.set(station, (count + 1));
+                }
+            }
+            const number = stationList.size;
+            console.log("Departure stations number: ", number);
+
+            const sortedList = Array.from(stationList).sort((a, b) => b[1] - a[1]);
+            const topFive = sortedList.slice(0, 5).map(journey => <tr><td>{journey[0]}</td> <td>{journey[1]}</td></tr>)
+
+            return topFive
+        }
+    }
 
 
     return ( 
@@ -296,6 +318,8 @@ const StationDetail = () => {
                             <td > Pisin matka (h): </td>
                             <td> {findLongestTripMin(journeysReturnId)} </td>
                         </tr>
+                        <tr><th> Viisi yleisintä lähtöasemaa: </th></tr>
+                        {topFiveDepartureStations()}
                     </tbody>
                 </table>
             </div>
