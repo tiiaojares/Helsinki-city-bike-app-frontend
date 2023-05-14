@@ -47,7 +47,6 @@ const StationsTable = ({
     const stationsToShow = foundStations.slice(from, to);
     console.log("show stations index ", from, "-", to)
 
-
     const navigate = useNavigate();
 
     const selectStation = (station) => {
@@ -82,7 +81,7 @@ const StationsView = () => {
     const [stationsFindNumber, setStationsFoundNumber] = useState("");
     const [maxIndexToShow, setMaxIndexToShow] = useState(15);
     const [minIndexToShow, setMinIndexToShow] = useState(1);
-    const [sortType, setSortType] = useState("id")
+    const [sortType, setSortType] = useState("name")
 
     //get stations from the backend
     useEffect(() => {

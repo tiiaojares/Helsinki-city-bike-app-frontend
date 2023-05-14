@@ -45,9 +45,7 @@ input {
     margin-bottom: 2rem;
     width: 80%;
 }
-.journeyPicture {
-    margin-top: 0;
-}
+
 
 .arrow:hover {
     cursor: pointer;
@@ -65,6 +63,21 @@ input {
 }
 .selected {
     color: black
+}
+.spinner-border {
+    margin-right: 0.5rem;
+}
+.headerRow {
+    padding-top: 1rem;
+}
+.journeyDetailTable {
+    border-bottom: none;
+}
+.journeyPicture {
+    max-height: 250px;
+}
+.departureStationDetail {
+    margin-bottom: 3rem;
 }
 
 @media screen and (max-width: 600px) {
@@ -100,8 +113,14 @@ input {
     .bi {
         width: 20px;
     }
+   
+    .loadingText {
+        font-size: 0.6rem;
+    }
  
-  
+    .departureStationDetail {
+        margin-bottom: 1rem;
+    }
 
 
 

@@ -15,7 +15,7 @@ const App = () => {
           <div className="container">
             <a onClick={() => navigate("/")}> 
               < Logo />
-              Helsinki city bike
+              <span className="navHeader"> Helsinki city bike </span>
             </a>
           </div>
         </nav>

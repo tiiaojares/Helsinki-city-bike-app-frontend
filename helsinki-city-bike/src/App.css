@@ -1,6 +1,9 @@
 .navbar {
   color: white;
 }
+.navHeader {
+  margin-left: 1rem;
+}
 
 body {
   background-color: #f1be5a;
@@ -16,6 +19,7 @@ a:hover {
   margin-top: 2rem;
 }
 
+
 @media screen and (max-width: 600px) {
   .bottom {
     font-size: 0.8rem;
@@ -25,7 +29,8 @@ a:hover {
   .mainPageBottom {
     display: none;
   }
-  .nav-link {
-    text-align: left;
+  
+  .navHeader {
+    margin-left: 0.3rem;
   }
 }
