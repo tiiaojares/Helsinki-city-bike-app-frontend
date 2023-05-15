@@ -68,7 +68,8 @@ input {
 
 }
 .selected {
-    color: black
+    color: black;
+    cursor: pointer;
 }
 .spinner-border {
     margin-right: 0.5rem;
@@ -89,6 +90,7 @@ input {
 .topFive {
     font-weight: 500;
 }
+
 
 
 

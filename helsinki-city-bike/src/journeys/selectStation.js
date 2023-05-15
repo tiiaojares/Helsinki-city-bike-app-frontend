@@ -25,7 +25,7 @@ const SelectStation = ({
     }
 
     const foundStations = stations
-        .filter(s => s.Nimi.toLowerCase().startsWith(nameInput))
+        .filter(s => s.Nimi.toLowerCase().startsWith(nameInput.toLowerCase()))
 
     const selectStation = (station) => {
         if (stationType == "departure") {

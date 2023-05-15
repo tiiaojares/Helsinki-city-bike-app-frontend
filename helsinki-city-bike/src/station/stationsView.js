@@ -3,7 +3,7 @@ import stationService from '../services/stations';
 import './station.css'
 import { FilterComponent } from './filterComponent';
 import { useNavigate } from 'react-router-dom';
-import { ArrowNext, ArrowPrevious } from '../images/arrows';
+import { ArrowNext, ArrowPrevious, ArrowDown, ArrowUp } from '../images/arrows';
 
 
 const StationsTable = ({
@@ -15,7 +15,8 @@ const StationsTable = ({
     setStationsFoundNumber,
     minIndexToShow,
     maxIndexToShow,
-    sortType
+    sortType,
+    sortUpward
     }) => {
     
 
@@ -34,13 +35,29 @@ const StationsTable = ({
 
    //sort list
     if (sortType === "id") {
-        const sortedList = foundStations.sort((a, b) => a.ID - b.ID)
+        if (sortUpward === true) {
+            const sortedList = foundStations.sort((a, b) => a.ID - b.ID)
+        } else {
+            const sortedList = foundStations.sort((a, b) => b.ID - a.ID)
+        }
     } else if (sortType === "name") {
-        const sortedList = foundStations.sort((a, b) => a.Nimi.localeCompare(b.Nimi) )
+        if (sortUpward === true) {
+            const sortedList = foundStations.sort((a, b) => a.Nimi.localeCompare(b.Nimi) )
+        } else {
+            const sortedList = foundStations.sort((a, b) => b.Nimi.localeCompare(a.Nimi) )
+        }
     } else if (sortType === "address") {
-        const sortedList = foundStations.sort((a, b) => a.Osoite.localeCompare(b.Osoite))
+        if (sortUpward === true) {
+            const sortedList = foundStations.sort((a, b) => a.Osoite.localeCompare(b.Osoite))
+        } else {
+            const sortedList = foundStations.sort((a, b) => b.Osoite.localeCompare(a.Osoite))
+        }
     } else if (sortType === "kapasiteet") {
-        const sortedList = foundStations.sort((a, b) => a.Kapasiteet - b.Kapasiteet)
+        if (sortUpward === true) {
+            const sortedList = foundStations.sort((a, b) => a.Kapasiteet - b.Kapasiteet)
+        } else {
+            const sortedList = foundStations.sort((a, b) => b.Kapasiteet - a.Kapasiteet)
+        }
     }
 
 
@@ -82,6 +99,7 @@ const StationsView = () => {
     const [maxIndexToShow, setMaxIndexToShow] = useState(15);
     const [minIndexToShow, setMinIndexToShow] = useState(1);
     const [sortType, setSortType] = useState("name")
+    const [sortUpward, changeSortUpward] = useState(true);
 
     //get stations from the backend
     useEffect(() => {
@@ -117,6 +135,15 @@ const StationsView = () => {
         }
     }
 
+    function changeSortType(type) {
+        if (sortType === type) {
+            changeSortUpward(!sortUpward);
+        } else {
+            changeSortUpward(true);
+            setSortType(type);
+        }
+    }
+
     return (
         <div> 
             <FilterComponent 
@@ -145,10 +172,34 @@ const StationsView = () => {
                     <table className="table">
                         <thead>
                         <tr>
-                            <th className={sortType === "id" ? "selected" : "sort"}  onClick={() => setSortType("id")} scope="col"> ID </th> 
-                            <th className={sortType === "name" ? "selected" : "sort"} onClick={() => setSortType("name")} scope="col"> Nimi </th> 
-                            <th className={sortType === "address" ? "selected" : "sort"} onClick={() => setSortType("address")} scope="col">  Osoite </th> 
-                            <th className={sortType === "kapasiteet" ? "selected" : "sort"} onClick={() => setSortType("kapasiteet")} scope="col"> Kapasiteetti </th> 
+                            <th 
+                            className={sortType === "id" ? "selected" : "sort"}  
+                            onClick={() => changeSortType("id")}> 
+                                ID 
+                                { sortType === "id" && sortUpward === false && <ArrowDown /> }
+                                { sortType === "id" && sortUpward === true && <ArrowUp /> }
+                            </th> 
+                            <th 
+                            className={sortType === "name" ? "selected" : "sort"} 
+                            onClick={() => changeSortType("name")}> 
+                                Nimi 
+                                { sortType === "name" && sortUpward === false && <ArrowDown /> }
+                                { sortType === "name" && sortUpward === true && <ArrowUp /> }
+                            </th> 
+                            <th 
+                            className={sortType === "address" ? "selected" : "sort"} 
+                            onClick={() => changeSortType("address")}>  
+                                Osoite 
+                                { sortType === "address" && sortUpward === false && <ArrowDown /> }
+                                { sortType === "address" && sortUpward === true && <ArrowUp /> }
+                            </th> 
+                            <th 
+                            className={sortType === "kapasiteet" ? "selected" : "sort"} 
+                            onClick={() => changeSortType("kapasiteet")}> 
+                                Kapasiteetti 
+                                { sortType === "kapasiteet" && sortUpward === false && <ArrowDown /> }
+                                { sortType === "kapasiteet" && sortUpward === true && <ArrowUp /> }
+                             </th> 
                         </tr>
                         </thead>
                         <tbody>
@@ -162,6 +213,7 @@ const StationsView = () => {
                                 maxIndexToShow={maxIndexToShow}
                                 minIndexToShow={minIndexToShow}
                                 sortType={sortType}
+                                sortUpward={sortUpward}
                                 />
                         </tbody>
                     </table>

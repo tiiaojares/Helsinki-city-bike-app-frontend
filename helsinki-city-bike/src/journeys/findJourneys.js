@@ -8,7 +8,7 @@ import { ArrowNext, ArrowPrevious, ArrowUp, ArrowDown } from '../images/arrows';
 const JourneyData = ({selectedDepartureStation, selectedReturnStation}) => {
     const [foundJourneys, setFoundJourneys] = useState(null);
     const [sortType, setSortType] = useState("")
-    const [sortTypeUpward, setSortTypeUpward] = useState(true);
+    const [sortUpward, changeSortUpward] = useState(true);
     const [maxIndexToShow, setMaxIndexToShow] = useState(15);
     const [minIndexToShow, setMinIndexToShow] = useState(1);
 
@@ -23,13 +23,13 @@ const JourneyData = ({selectedDepartureStation, selectedReturnStation}) => {
 
 
     if (sortType === "distance" ) {
-        if (sortTypeUpward === true) {
+        if (sortUpward === true) {
             foundJourneys.sort((a, b) => a.distance - b.distance)
         } else {
             foundJourneys.sort((a, b) => b.distance - a.distance)
         }
     } else if (sortType === "duration") {
-        if (sortTypeUpward === true) {
+        if (sortUpward === true) {
             foundJourneys.sort((a, b) => a.duration - b.duration)
         } else {
             foundJourneys.sort((a, b) => b.duration - a.duration)
@@ -54,9 +54,9 @@ const JourneyData = ({selectedDepartureStation, selectedReturnStation}) => {
 
     function changeSortType(type) {
         if (sortType === type) {
-            setSortTypeUpward(!sortTypeUpward);
+            changeSortUpward(!sortUpward);
         } else {
-            setSortTypeUpward(true);
+            changeSortUpward(true);
             setSortType(type);
         }
     }
@@ -106,19 +106,19 @@ const JourneyData = ({selectedDepartureStation, selectedReturnStation}) => {
                         <thead>
                             <tr>
                                 <th 
-                                className={sortType === "distance" ? "selectedUpward" : "sort"} 
+                                className={sortType === "distance" ? "selected" : "sort"} 
                                 onClick={() => changeSortType("distance")}> 
                                     Matkan pituus (km) 
-                                    { sortType === "distance" && sortTypeUpward === false && <ArrowDown /> }
-                                    { sortType === "distance" && sortTypeUpward === true && <ArrowUp /> }
+                                    { sortType === "distance" && sortUpward === false && <ArrowDown /> }
+                                    { sortType === "distance" && sortUpward === true && <ArrowUp /> }
                                 </th>
 
                                 <th 
-                                className={sortType === "duration" ? "selectedUpward" : "sort"} 
+                                className={sortType === "duration" ? "selected" : "sort"} 
                                 onClick={() => changeSortType("duration")}>
                                     Matkan kesto (min) 
-                                    { sortType === "duration" && sortTypeUpward === false && <ArrowDown /> }
-                                    { sortType === "duration" && sortTypeUpward === true && <ArrowUp /> }
+                                    { sortType === "duration" && sortUpward === false && <ArrowDown /> }
+                                    { sortType === "duration" && sortUpward === true && <ArrowUp /> }
                                 </th>
                             </tr>
                         </thead>
