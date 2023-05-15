@@ -17,6 +17,9 @@
     margin-top: 2rem;
 
 }
+.findText {
+    display: inline;
+}
 
 
 
@@ -72,9 +75,7 @@
     .selectStation:hover {
         font-weight: bold;
     }
-    .selectedUpward {
-        cursor: pointer;
-    }
+
     .headerSection {
         display: flex;
         justify-content: space-between;

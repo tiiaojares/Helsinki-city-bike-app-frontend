@@ -3,19 +3,36 @@ import Card from 'react-bootstrap/Card';
 import './cards.css'
 import { useNavigate } from 'react-router-dom';
 
-const CardComponent = ({pictureUrl, text, navigateTo}) => {
+const CardComponent = ({picture, text, navigateTo, createNew}) => {
 
     const navigate = useNavigate();
 
+
     return (
         <Card 
-            className="card"
-            onClick={() => navigate(navigateTo) } >
+            className={createNew ? "card  createNew" : "card"}
+            onClick={
+                () => {!createNew && navigate(navigateTo) } }>
             
             <Card.Header 
                 className="cardHeader">
                 <img className="card-img-top" 
-                src={pictureUrl} />
+                src={picture} />
+                {createNew && 
+                    <div className="createNewButtons"> 
+                        <button 
+                            className="btn btn-dark btn-sm createNewButton"
+                            onClick={() => navigate("/newJourney")}>
+                            Luo uusi matka
+                        </button>
+                        <button 
+                            className="btn btn-dark btn-sm createNewButton"
+                            onClick={() => navigate("/newStation")}>
+                            Luo uusi asema
+                        </button> 
+                    </div>
+                }
+                
             </Card.Header>
             
             <Card.Body>

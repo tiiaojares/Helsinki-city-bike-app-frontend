@@ -5,7 +5,13 @@ import { JourneysView } from '../journeys/journeysView';
 import { StationDetail } from '../station/stationDetail';
 import { CardComponent } from '../cards/card';
 import { FindJourneys } from '../journeys/findJourneys';
-import '../App.css'
+import { NewJourney } from '../journeys/newJourney';
+import { NewStation } from '../station/newStation';
+import '../App.css';
+import notebook from '../images/notebook.jpg';
+import road from '../images/road.jpg';
+import station from '../images/station.jpg';
+
 
 
 const MainPage = () => {
@@ -13,13 +19,20 @@ const MainPage = () => {
     return (
         <div className="row cardRow">
         <CardComponent 
-            pictureUrl={"https://cdn.pixabay.com/photo/2017/08/17/17/44/the-little-yellow-car-2652215_960_720.jpg"} 
+            picture={station} 
             text={"Kaupunkipyöräasemat"} 
             navigateTo={"/stations"} />        
         <CardComponent 
-            pictureUrl={"https://cdn.pixabay.com/photo/2014/12/02/03/16/winding-road-553481__340.jpg"} 
+            picture={road} 
             text={"Matkat"} 
             navigateTo={"/journeys"} />
+        <CardComponent 
+            picture={notebook} 
+            text={"Luo uusi"} 
+            navigateTo={"/journeys"} 
+            createNew={true}            
+            />
+
       </div>
     )
 }
@@ -33,6 +46,8 @@ const Main = () => {
                 <Route path="/journeys" element={ < JourneysView /> } />
                 <Route path="/stations/:id" element={ <StationDetail /> } />
                 <Route path ="/journeys/find" element={<FindJourneys />}/>
+                <Route path="/newJourney" element={ <NewJourney />} />
+                <Route path="/newStation" element={ <NewStation />} />
             </Routes>
         </main>
     )

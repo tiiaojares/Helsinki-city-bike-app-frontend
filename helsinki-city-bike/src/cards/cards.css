@@ -26,6 +26,31 @@
     box-shadow: 0 4px 8px 2px rgba(0,0,0,0.4);
     cursor: pointer;
 }
-@media screen and (max-width: 600px) {
 
+
+.createNewButton {
+    opacity: 80%;
+    display: block;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.createNew:hover .createNewButtons {
+    visibility: visible;
+}
+
+.createNewButtons {
+    visibility: hidden;
+    position: relative;
+    display: inline-block;
+    margin-top: 50%;
+}
+
+@media screen and (max-width: 600px) {
+    .createNewButtons {
+        visibility:visible
+    }
 }

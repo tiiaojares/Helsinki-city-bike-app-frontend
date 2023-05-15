@@ -184,7 +184,7 @@ const FindJourneys = () => {
                         
                         {!selectedDepartureStation ?
                             <div>
-                                <h4> Lähtöasema: </h4>
+                                <h4> Etsi lähtöasema: </h4>
                                 <SelectStation 
                                     stationType="departure"
                                     setSelectedDepartureStation={setSelectedDepartureStation}
@@ -197,7 +197,7 @@ const FindJourneys = () => {
                                     <p> { selectedDepartureStation.Nimi } </p>
                                     
                                 
-                                        <h4> Paluuasema: </h4>   
+                                        <h4> Etsi paluuasema: </h4>   
                                         <SelectStation 
                                         stationType="return"
                                         setSelectedReturnStation={setSelectedReturnStation}/>
