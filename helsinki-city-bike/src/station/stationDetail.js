@@ -226,10 +226,7 @@ const StationDetail = () => {
     return ( 
         <div>
             
-            <div className="row">
-                <div className="col-sm-6">
-                    <img className="journeyPicture" src="https://cdn.pixabay.com/photo/2014/12/02/03/16/winding-road-553481__340.jpg" />
-                </div>
+            <div className="row stationDetailRow">
                 <div className="col-sm-6">
                     <h2> {showName()} </h2>
                     <table className="table table-sm table-borderless stationDetail">
@@ -249,6 +246,7 @@ const StationDetail = () => {
                         </tbody>
                     </table>
                 </div>
+                <div className="col-sm-6" />
             </div>
                 
 
@@ -281,7 +279,8 @@ const StationDetail = () => {
                             <td > Pisin matka (h): </td>
                             <td> {findLongestTripMin(journeysDepartureId)} </td>
                         </tr>
-                        <tr><th> Viisi yleisintä määränpäätä: </th></tr>
+                        <tr><th></th></tr>
+                        <tr><td className="topFive"> Viisi yleisintä määränpäätä: </td> <td className="topFive"> Matkoja: </td></tr>
                         {topFiveReturnStations()}
 
                     </tbody>
@@ -289,7 +288,7 @@ const StationDetail = () => {
                 
             </div>
 
-            <div className="col-sm-6">  
+            <div className="col-sm-6 returnStationDetail">  
                 <table className="table table-sm table-borderless">
                     <tbody className="journeyDetailTable">
 
@@ -318,7 +317,8 @@ const StationDetail = () => {
                             <td > Pisin matka (h): </td>
                             <td> {findLongestTripMin(journeysReturnId)} </td>
                         </tr>
-                        <tr><th> Viisi yleisintä lähtöasemaa: </th></tr>
+                        <tr><th></th></tr>
+                        <tr className="topFive"><td> Viisi yleisintä lähtöasemaa: </td> <td> Matkoja:</td></tr>
                         {topFiveDepartureStations()}
                     </tbody>
                 </table>

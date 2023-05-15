@@ -5,17 +5,19 @@ import stationService from '../services/stations';
 const SelectStation = ({
     stationType, 
     setSelectedDepartureStation, 
-    setSelectedReturnStation}) => {
+    setSelectedReturnStation
+    }) => {
 
     const [stations, setStations] = useState([]);
     const [nameInput, setNameInput] = useState("");
 
     useEffect(() => {
         stationService
-          .getAll()
-          .then(response => {
-            setStations(response);
-          })
+            .getAll()
+            .then(response => {
+                setStations(response);
+        })
+    
       }, []);
 
     const setStationsName = (event) => {
@@ -26,14 +28,13 @@ const SelectStation = ({
         .filter(s => s.Nimi.toLowerCase().startsWith(nameInput))
 
     const selectStation = (station) => {
-        console.log("klikattu")
         if (stationType == "departure") {
-            setSelectedDepartureStation(station)
+            setSelectedDepartureStation(station);
             console.log("valittu lähtöasema: ", station.Nimi)
     
         } else if ( stationType == "return") {
             setSelectedReturnStation(station)
-            console.log("valittu apuuasema: ", station.Nimi)
+            console.log("valittu paluuasema: ", station.Nimi)
         }
     }
 
@@ -41,11 +42,11 @@ const SelectStation = ({
         <div key={s.ID} 
             onClick={() => selectStation(s)}
             className="stationRow">
-            <p> {s.Nimi} </p> 
+            <p className="selectStation"> {s.Nimi} </p> 
         </div>
     )
     
-    return (<div>
+    return (<div className="findStationContainer">
         <input 
             className="findInput" 
             type="text" 
@@ -53,11 +54,7 @@ const SelectStation = ({
             onChange={setStationsName} 
         />
         <div>
-        {foundStations.length <100 &&
-          
-            showStation
-            
-        }
+            { foundStations.length <100 && showStation }
         </div>
     </div>
     )

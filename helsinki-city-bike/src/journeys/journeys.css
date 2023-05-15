@@ -17,11 +17,12 @@
     margin-top: 2rem;
 
 }
-.findInput {
-    float: left;
-    width: 90%;
-    padding: 0.2rem;
-    padding-left: 0.5rem;
+
+.newSearchButton {
+    position: absolute;
+    bottom: 5rem;
+    right: 1rem;
+
 }
 
 @media screen and (max-width: 600px) {
@@ -44,4 +45,24 @@
     .btn {
         font-size: 0.6rem;
     }
+    .findInput {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .findInput {
+        float: left;
+        width: 40%;
+        margin-right: 60%;
+        margin-bottom: 1rem;
+        padding: 0.2rem;
+        padding-left: 0.5rem;
+        display: block;
+    }
+    .selectStation:hover {
+        font-weight: bold;
+    }
+   
 }

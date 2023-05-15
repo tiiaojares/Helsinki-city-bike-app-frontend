@@ -42,8 +42,14 @@ input {
 
 .stationDetail {
     margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     width: 80%;
+    
+}
+.stationDetailRow {
+    border-radius: 1px;
+    border-bottom: solid black 1px;
+    margin-bottom: 1rem;
 }
 
 
@@ -74,11 +80,17 @@ input {
     border-bottom: none;
 }
 .journeyPicture {
-    max-height: 250px;
+    max-height: 160px;
 }
 .departureStationDetail {
     margin-bottom: 3rem;
 }
+
+.topFive {
+    font-weight: 500;
+}
+
+
 
 @media screen and (max-width: 600px) {
     h2 {
@@ -121,7 +133,9 @@ input {
     .departureStationDetail {
         margin-bottom: 1rem;
     }
-
+    .returnStationDetail {
+        margin-bottom: 2rem;
+    }
 
 
 }
