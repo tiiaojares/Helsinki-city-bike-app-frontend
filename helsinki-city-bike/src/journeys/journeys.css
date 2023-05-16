@@ -20,6 +20,33 @@
 .findText {
     display: inline;
 }
+.alertNotification{
+    color: red;
+
+}
+.succesInfo {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-color: black;
+    border-radius: 12px;
+    font-size: 12px;
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.4);
+
+}
+.hide {
+    opacity: 60%;
+}
+.hide .createNewStationButton:hover {
+    cursor:auto;
+}
+
 
 
 
@@ -46,6 +73,7 @@
     .findInput {
         width: 100%;
         margin-bottom: 1rem;
+        padding-left: 0.5rem;
     }
     .newSearchButton {
         margin-bottom: 0.5rem;    
@@ -59,6 +87,27 @@
         min-width: 30%;
         height: 2rem;
      }
+     .createNewComponent {
+        font-size: 12px;
+    }
+
+    .succesInfo {
+        position: fixed;
+        top: 15%;
+        left: 5%;
+        width: 90%;
+        height: 20%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border-radius: 12px;
+        border-color: black;
+        font-size: 12px;
+        box-shadow: 0 4px 8px 2px rgba(0,0,0,0.4);
+    }
+    
 
 }
 
@@ -72,6 +121,10 @@
         padding-left: 0.5rem;
         display: block;
     }
+    .selectStation {
+        color: black;
+    }
+
     .selectStation:hover {
         font-weight: bold;
     }
@@ -84,5 +137,8 @@
        margin-top: 1rem;
        min-width: 8rem;
     
+    }
+    .successText {
+        font-size: 18px;
     }
 }

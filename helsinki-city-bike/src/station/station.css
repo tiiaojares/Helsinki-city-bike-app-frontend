@@ -90,6 +90,37 @@ input {
 .topFive {
     font-weight: 500;
 }
+.alertNotification {
+    color: red;
+}
+.id {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.succesInfo {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-color: black;
+    border-radius: 12px;
+    font-size: 12px;
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.4);
+
+}
+.hide {
+    opacity: 60%;
+}
+.hide .createNewStationButton:hover {
+    cursor:auto;
+}
+
+
 
 
 
@@ -139,59 +170,26 @@ input {
     .returnStationDetail {
         margin-bottom: 2rem;
     }
-    .newStationComponent {
-        border: none;
+    .createNewComponent {
+        font-size: 12px;
     }
-    
-    .newStationInput {
-        width: 100%;
-        margin: 0;
-        padding: 0.3rem;
-        font-size: 10px;
-    }
-    
-    .newStationRow {
-        padding: 1rem;
-
-    }
-    .button {
-        text-align: right;
-    }
-    .createNewStationButton {
-        margin-right: 1rem;
-        margin-bottom: 1.5rem;
-        margin-top: 2rem;
-        width: 6rem;
-
-    }
-    .newStationId {
-        margin: 1rem;
-        margin-bottom: 0;
-        font-size: 14px;
-        color: rgb(84, 84, 84);
-    }
-    .successInfo {
-        margin: 0.5rem;
-        background-color: #343a40;
-        border-radius: 12px;
-        color: white;
+    .succesInfo {
+        position: fixed;
+        top: 15%;
+        left: 5%;
+        width: 90%;
+        height: 20%;
         text-align: center;
-        margin-top: 20%; 
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
+        background-color: white;
+        border-radius: 12px;
+        border-color: black;
+        font-size: 12px;
+        box-shadow: 0 4px 8px 2px rgba(0,0,0,0.4);
     }
-    .successInfo > p {
-        font-size: 10px;
-    }
-    .successInfo > p:first-child {
-        margin-top: 0;
-    }
-    .successInfo > p:last-child {
-        margin-bottom: 4rem;
-        
-    }
+    
 
 }
 
@@ -203,66 +201,10 @@ input {
     .infoForMobileUser {
         display: none;
     }
-    .newStationComponent {
-        border: 1px solid rgb(102, 101, 101);
-        border-radius: 12px;
-        width: 50%;
-        margin-top: 2rem;
-        box-shadow: 0 4px 8px 2px rgba(0,0,0,0.4);
-    }
-    
-    .newStationInput {
-        width: 70%;
-        margin: 0;
-        padding: 0.3rem;
-        padding-left: 0.5rem;
-        font-size: 12px;
-    }
-    
-    .newStationRow {
-        padding: 2rem;
-        margin: 1rem;
-    }
-    .newStationId {
-        padding-top: 1rem;
-        padding-left: 2rem;
-        margin: 1rem;
+    .successText {
         font-size: 18px;
-        color: rgb(84, 84, 84);
     }
-    .createNewStationButton {
-        margin-right: 3rem;
-        margin-bottom: 1.5rem;
-        margin-top: 1rem;
-        width: 6rem;
 
-    }
-    .button {
-        text-align: right;
-    }
-    .successInfo {
-        border: 1px solid rgb(36, 36, 36);
-        box-shadow: 0 4px 8px 2px rgba(0,0,0,0.4);
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-        margin: 3rem;
-        background-color: #343a40;
-        border-radius: 12px;
-        color: white;
-        text-align: center;
-        margin-top: 20%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .successInfo > p {
-        font-size: 20px;
-    }
- 
-    .fail {
-        border: 1px solid rgb(36, 36, 36);
-        background-color: #3f4347;
-        box-shadow: 0 4px 8px 2px rgba(0,0,0,0.4);
-    }
+    
+
 }

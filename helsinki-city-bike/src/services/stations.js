@@ -14,7 +14,6 @@ const getReturnStations = (id) => {
 }
 
 const createStation = newStation => {
-    console.log("postilla lähtee", newStation)
     return axios.post(baseUrl, newStation);
 }
 

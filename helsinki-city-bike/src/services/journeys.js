@@ -22,4 +22,8 @@ const getJourneysDepartureAndReturnStation = (dep, ret) => {
     return request.then(response => response.data);
 }
 
-export default { getAll, getJourneysDepartureId, getJourneysReturnId, getJourneysDepartureAndReturnStation }
+const createJourney = newJourney => {
+    return axios.post(baseUrl, newJourney);
+}
+
+export default { getAll, getJourneysDepartureId, getJourneysReturnId, getJourneysDepartureAndReturnStation, createJourney }

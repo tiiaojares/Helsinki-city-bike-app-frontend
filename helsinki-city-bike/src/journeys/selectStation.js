@@ -30,10 +30,12 @@ const SelectStation = ({
     const selectStation = (station) => {
         if (stationType == "departure") {
             setSelectedDepartureStation(station);
+            setNameInput(station.Nimi)
             console.log("valittu lähtöasema: ", station.Nimi)
     
         } else if ( stationType == "return") {
             setSelectedReturnStation(station)
+            setNameInput(station.Nimi)
             console.log("valittu paluuasema: ", station.Nimi)
         }
     }
@@ -54,7 +56,7 @@ const SelectStation = ({
             onChange={setStationsName} 
         />
         <div>
-            { foundStations.length <100 && showStation }
+            { foundStations.length <100 && foundStations.length > 1 && showStation }
         </div>
     </div>
     )
