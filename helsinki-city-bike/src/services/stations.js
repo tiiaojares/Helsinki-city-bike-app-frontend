@@ -13,4 +13,9 @@ const getReturnStations = (id) => {
     return request.then(response => response.data);
 }
 
-export default { getAll, getReturnStations }
+const createStation = newStation => {
+    console.log("postilla lähtee", newStation)
+    return axios.post(baseUrl, newStation);
+}
+
+export default { getAll, getReturnStations, createStation }

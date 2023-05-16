@@ -41,14 +41,27 @@ const NewStation = () => {
             if (kapasiteetNumber) {
                 const stationObject = {ID: newId, Nimi: newName, Osoite: newAddress, Kaupunki: newCity, Kapasiteet: newKapasiteet}
                 console.log("new station: ", stationObject);
-                setName("");
-                setAddress("");
-                setCity("");
-                setKapasiteet("")
-                setSuccess(true);
-                setTimeout( () => {
-                    navigate("/")
-                }, 3000)
+                stationService
+                    .createStation(stationObject)
+                    .then( response => {
+                        setName("");
+                        setAddress("");
+                        setCity("");
+                        setKapasiteet("")
+                        setSuccess(true);
+
+                        setTimeout( () => {
+                            navigate("/")
+                        }, 3000)
+                    })
+                    .catch(error => {
+                        setFail(true);
+                        console.log(error.response.data.error)
+                        setTimeout( () => {
+                            setFail(false)
+                        }, 4000)
+                    })
+               
             } else {
                 console.log("kapasiteet ei numero")
                 setFail(true)
