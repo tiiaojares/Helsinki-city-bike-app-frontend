@@ -3,6 +3,9 @@
     border-bottom: solid 3px;
     border-color: black;
 }
+.filterInput {
+    padding-left: 0.5rem;
+}
 
 h2 {
     margin-top: 1rem;

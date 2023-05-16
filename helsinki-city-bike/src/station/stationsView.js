@@ -31,7 +31,8 @@ const StationsTable = ({
     }, [foundStations.length, setStationsFoundNumber])
     
     const from = minIndexToShow - 1;
-    const to = maxIndexToShow - 1;
+    const to = maxIndexToShow;
+    console.log("to: ", to)
 
    //sort list
     if (sortType === "id") {
@@ -61,7 +62,8 @@ const StationsTable = ({
     }
 
 
-    const stationsToShow = foundStations.slice(from, to);
+    let stationsToShow = foundStations.slice(from, to);
+  
     console.log("show stations index ", from, "-", to)
 
     const navigate = useNavigate();
@@ -70,8 +72,6 @@ const StationsTable = ({
         const id = station.ID
         navigate("/stations/"+id)
     }
-
-   
 
     return (
         stationsToShow.map(s =>
@@ -95,7 +95,7 @@ const StationsView = () => {
     const [nameFilterInput, setNameFilterInput] = useState("");
     const [addressFilterInput, setAddressFilterInput] = useState("");
     const [kapasiteetFilterInput, setKapasiteetFilterInput] = useState("");
-    const [stationsFindNumber, setStationsFoundNumber] = useState("");
+    const [stationsFoundNumber, setStationsFoundNumber] = useState("");
     const [maxIndexToShow, setMaxIndexToShow] = useState(15);
     const [minIndexToShow, setMinIndexToShow] = useState(1);
     const [sortType, setSortType] = useState("name")
@@ -113,9 +113,15 @@ const StationsView = () => {
     const navigate = useNavigate();
 
     function next() {
-        if (maxIndexToShow + 15 > stations.length){
-            setMinIndexToShow(minIndexToShow + 15)
-            setMaxIndexToShow(stations.length);
+        console.log("stations length:", stationsFoundNumber)
+        console.log("max + 15: ", (maxIndexToShow + 15))
+        console.log("min + 15: ", (minIndexToShow + 15))
+        if (maxIndexToShow + 15 > stationsFoundNumber){
+            if(minIndexToShow + 15 <= stationsFoundNumber){
+                setMinIndexToShow(minIndexToShow + 15)
+                setMaxIndexToShow(stationsFoundNumber);
+            } 
+            
         } else {
             setMinIndexToShow(minIndexToShow + 15)
             setMaxIndexToShow(maxIndexToShow + 15)
@@ -155,15 +161,24 @@ const StationsView = () => {
                 setAddressFilterInput={setAddressFilterInput}
                 kapasiteetFilterInput={kapasiteetFilterInput}
                 setKapasiteetFilterInput={setKapasiteetFilterInput}
-                stationsFindNumber={stationsFindNumber}
+                stationsFindNumber={stationsFoundNumber}
+                setMaxIndexToShow={setMaxIndexToShow}
+                setMinIndexToShow={setMinIndexToShow}
             />
             
-            {stationsFindNumber > 15 &&
+            {stationsFoundNumber > 15 &&
             <div aria-label="Page navigation example">
                 
-                 { maxIndexToShow > 15 && <span className="arrow" onClick={() => previous()}> <ArrowPrevious /> </span> }
-                <span className="stationPagination">Asemat {minIndexToShow}-{maxIndexToShow} / {stationsFindNumber}</span>
-                { maxIndexToShow < stations.length && <span className="arrow" onClick={() => next()}> <ArrowNext /> </span> }
+                { maxIndexToShow > 15 && <span className="arrow" onClick={() => previous()}> <ArrowPrevious /> </span> }
+                { maxIndexToShow !== minIndexToShow ? 
+                    <span className="stationPagination">
+                        Asemat {minIndexToShow}-{maxIndexToShow} / {stationsFoundNumber}
+                    </span> :  
+                    <span className="stationPagination">
+                        Asemat {minIndexToShow} / {stationsFoundNumber}
+                    </span>
+                }
+                { maxIndexToShow < stationsFoundNumber && <span className="arrow" onClick={() => next()}> <ArrowNext /> </span> }
             </div>
             }
             

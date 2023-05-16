@@ -1,4 +1,4 @@
-
+import './station.css'
 
 const FilterComponent = ({idFilterInput,
     setIdFilterInput,
@@ -8,20 +8,31 @@ const FilterComponent = ({idFilterInput,
     setAddressFilterInput,
     kapasiteetFilterInput,
     setKapasiteetFilterInput,
-    stationsFindNumber}) => {
+    stationsFindNumber,
+    setMinIndexToShow,
+    setMaxIndexToShow,
+    }) => {
     
     const filterWithID = (event) => {
         setIdFilterInput(event.target.value);
+        setMinIndexToShow(1);
+        setMaxIndexToShow(15);
     }
 
     const filterWithName = (event) => {
         setNameFilterInput(event.target.value);
+        setMinIndexToShow(1);
+        setMaxIndexToShow(15)
     }
     const filterWithAdress = (event) => {
         setAddressFilterInput(event.target.value);
+        setMinIndexToShow(1);
+        setMaxIndexToShow(15)
     }
     const filterWithKapasiteet = (event) => {
         setKapasiteetFilterInput(event.target.value);
+        setMinIndexToShow(1);
+        setMaxIndexToShow(15)
     }
 
 

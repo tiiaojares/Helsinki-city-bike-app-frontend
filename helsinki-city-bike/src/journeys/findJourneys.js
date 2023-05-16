@@ -175,14 +175,14 @@ const FindJourneys = () => {
 
         <div className="container findJourneyComponent"> 
             <div>
-                <h4> Etsi lähtöasema: </h4>
+                <h5> Etsi lähtöasema: </h5>
                 <SelectStation 
                     stationType="departure"
                     setSelectedDepartureStation={setSelectedDepartureStation}
                 />
             </div> 
             <div>
-                <h4> Etsi paluuasema: </h4>   
+                <h5> Etsi paluuasema: </h5>   
                 <SelectStation 
                 stationType="return"
                 setSelectedReturnStation={setSelectedReturnStation}/>    
