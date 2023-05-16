@@ -206,7 +206,6 @@ const FindJourneys = () => {
                             </div>
                         }
                     </div>
-
                     <div> 
                         
                     
