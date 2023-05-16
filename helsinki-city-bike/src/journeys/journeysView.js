@@ -65,7 +65,7 @@ const JourneysView = () => {
                 </button>
               </div>
             }
-          <nav class="navbar fixed-bottom navbar-dark bg-dark">
+          <nav className="navbar fixed-bottom navbar-dark bg-dark">
             <div className="container"> 
               <a 
                 className="navbar-brand bottom"

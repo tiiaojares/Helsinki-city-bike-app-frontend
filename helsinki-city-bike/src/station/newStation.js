@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './station.css';
 import stationService from '../services/stations';
-import { SuccessIcon, FailIcon } from '../images/alertSymbols';
+
 
 
 const NewStation = () => {

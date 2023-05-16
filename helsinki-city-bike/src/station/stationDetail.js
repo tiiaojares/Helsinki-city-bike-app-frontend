@@ -216,7 +216,7 @@ const StationDetail = () => {
             console.log("Departure stations number: ", number);
 
             const sortedList = Array.from(stationList).sort((a, b) => b[1] - a[1]);
-            const topFive = sortedList.slice(0, 5).map(journey => <tr><td>{journey[0]}</td> <td>{journey[1]}</td></tr>)
+            const topFive = sortedList.slice(0, 5).map(journey => <tr key={journey[0]}><td>{journey[0]}</td> <td>{journey[1]}</td></tr>)
 
             return topFive
         }

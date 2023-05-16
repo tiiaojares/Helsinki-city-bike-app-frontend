@@ -19,7 +19,7 @@ const JourneyData = ({selectedDepartureStation, selectedReturnStation}) => {
                 setFoundJourneys(response)
                 console.log("found journeys: ", response.length)
             })
-    }, []);
+    }, [selectedDepartureStation, selectedReturnStation]);
 
 
     if (sortType === "distance" ) {
@@ -165,13 +165,8 @@ const FindJourneys = () => {
             <h2> 
                 { selectedDepartureStation.Nimi } - { selectedReturnStation.Nimi } 
             </h2> 
-            <button 
-                className="btn btn-dark btn-sm newSearchButton"
-                onClick={() => refresh()}> 
-                Uusi haku
-            </button>
         
-        </div>: 
+        </div> : 
         <h2> Hae matkoja: </h2>}
 
         <div className="picture">
@@ -179,49 +174,30 @@ const FindJourneys = () => {
         </div>
 
         <div className="container findJourneyComponent"> 
-
-                    <div>
-                        
-                        {!selectedDepartureStation ?
-                            <div>
-                                <h4> Etsi lähtöasema: </h4>
-                                <SelectStation 
-                                    stationType="departure"
-                                    setSelectedDepartureStation={setSelectedDepartureStation}
-                                />
-                            </div> :
-                            <div>
-                                {!selectedReturnStation &&
-                                    <div>
-                                    <h5> Lähtöasema: </h5>
-                                    <p> { selectedDepartureStation.Nimi } </p>
-                                    
-                                
-                                        <h4> Etsi paluuasema: </h4>   
-                                        <SelectStation 
-                                        stationType="return"
-                                        setSelectedReturnStation={setSelectedReturnStation}/>
-                                    </div>
-                                }
-                            </div>
-                        }
-                    </div>
-                    <div> 
-                        
-                    
-                    {selectedDepartureStation && selectedReturnStation ?
-                        <div>
-                            <JourneyData
-                            selectedDepartureStation={selectedDepartureStation}
-                            selectedReturnStation={selectedReturnStation} 
-                            />
-                            <div >
-                      
-                            </div>
-                        </div> :
-                        <div/>
-                    }   
-                    </div>
+            <div>
+                <h4> Etsi lähtöasema: </h4>
+                <SelectStation 
+                    stationType="departure"
+                    setSelectedDepartureStation={setSelectedDepartureStation}
+                />
+            </div> 
+            <div>
+                <h4> Etsi paluuasema: </h4>   
+                <SelectStation 
+                stationType="return"
+                setSelectedReturnStation={setSelectedReturnStation}/>    
+            </div>
+            <div> 
+            {selectedDepartureStation && selectedReturnStation ?
+                <div>
+                    <JourneyData
+                    selectedDepartureStation={selectedDepartureStation}
+                    selectedReturnStation={selectedReturnStation} 
+                    />
+                </div> :
+                <div/>
+            }   
+            </div>
   
         </div>
 

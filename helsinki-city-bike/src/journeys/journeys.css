@@ -75,18 +75,12 @@
         margin-bottom: 1rem;
         padding-left: 0.5rem;
     }
-    .newSearchButton {
-        margin-bottom: 0.5rem;    
-    }
+ 
     .headerSection {
         display: flex;
         justify-content: space-between;
     }
-    .newSearchButton {
-        margin-top: 1rem;
-        min-width: 30%;
-        height: 2rem;
-     }
+
      .createNewComponent {
         font-size: 12px;
     }
@@ -133,11 +127,7 @@
         display: flex;
         justify-content: space-between;
     }
-    .newSearchButton {
-       margin-top: 1rem;
-       min-width: 8rem;
-    
-    }
+
     .successText {
         font-size: 18px;
     }
