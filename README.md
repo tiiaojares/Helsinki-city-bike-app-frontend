@@ -17,7 +17,7 @@ You can find the app from: https://helsinki-city-bike-app-8403.onrender.com/
 - npm install
 - npm start
 
-**Teknologies:**
+**Technologies:**
 - Backend: Node.js, Express, Mongoose
 - Frontend: JavaScript, React, Axios, Bootstrap
 
